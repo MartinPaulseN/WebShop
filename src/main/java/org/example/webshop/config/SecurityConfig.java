@@ -22,7 +22,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form.loginPage("/login").permitAll())
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
-                .headers(headers -> headers.frameOptions().sameOrigin());
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
     }

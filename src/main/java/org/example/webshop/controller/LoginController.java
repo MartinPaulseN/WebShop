@@ -26,7 +26,7 @@ public class LoginController {
     @PostMapping("/register")
     public String register(@ModelAttribute("userDto") UserDto userDto, RedirectAttributes redirectAttributes, UserService userService) {
         userService.register(userDto);
-        redirectAttributes.addFlashAttribute("message", "User registered successfully!");
+        redirectAttributes.addFlashAttribute("message", "Registreringen lyckades!");
         return "redirect:/login";
     }
 }

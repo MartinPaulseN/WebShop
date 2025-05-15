@@ -5,6 +5,8 @@ import org.example.webshop.entity.Product;
 import org.example.webshop.service.CartService;
 import org.example.webshop.service.ProductService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,5 +32,25 @@ public class CartController {
         }
 
         return "redirect:/products";
+    }
+
+    @GetMapping
+    public String wiewCart(Model model) {
+        model.addAttribute("cartItems", cartService.getCartItems());
+        model.addAttribute("total", cartService.getTotalPrice());
+        return "cart";
+    }
+
+    @PostMapping("/update")
+    public String updateQuantity(@RequestParam("productId") Long productId,
+                                 @RequestParam("quantity") int quantity) {
+        cartService.updateQuantity(productId, quantity);
+        return "redirect:/cart";
+    }
+
+    @PostMapping("/remove")
+    public String removeItem(@RequestParam("productId") Long productId) {
+        cartService.removeItem(productId);
+        return "redirect:/cart";
     }
 }

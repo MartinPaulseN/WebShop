@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Varukorg</title>
+</head>
+<body>
+<h1>Din varukorg</h1>
+<table>
+    <tr>
+        <th>Produkt</th>
+        <th>Pris</th>
+        <th>Antal</th>
+        <th>Total</th>
+        <th>Åtgärder</th>
+    </tr>
+    <tr th:each="item : ${cartItems}">
+        <td th:text="${item.product.name}"></td>
+        <td th:text="${item.product.price} + ' kr'"></td>
+        <td>
+            <form th:action="@{/cart/update}" method="post">
+                <input type="hidden" name="productId" th:value="${item.product.id}"/>
+                <input type="number" name="quantity" th:value="${item.quantity}" min="1"/>
+                <button type="submit">Uppdatera</button>
+            </form>
+        </td>
+        <td th:text="${item.totalPrice} + ' kr'"></td>
+        <td>
+            <form th:action="@{/cart/remove}" method="post">
+                <input type="hidden" name="productId" th:value="${item.product.id}"/>
+                <button type="submit">Ta bort</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<h2 th:text="'totalt: ' + ${totalPrice} + ' kr'"></h2>
+
+<a href="/products">Fortsätt handla</a>
+</body>
+</html>

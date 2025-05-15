@@ -27,6 +27,12 @@
   <li th:each="product : ${products}">
     <strong th:text="${product.name}">Produktnamn</strong> -
     <span th:text="${product.price} + ' kr'">Pris</span>
+
+    <form th:action="@{/cart/add}" method="post">
+      <input type="hidden" name="productId" th:value="${product.id}" />
+      <input type="number" name="quantity" min="1" value="1" />
+      <button type="submit">Lägg till i varukorg</button>
+    </form>
   </li>
 </ul>
 

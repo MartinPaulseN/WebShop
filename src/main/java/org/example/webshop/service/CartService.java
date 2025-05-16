@@ -47,4 +47,8 @@ public class CartService {
                 .mapToDouble(CartItem::getTotalPrice)
                 .sum();
     }
+
+    public void clearCart() {
+        cart.clear();
+    }
 }

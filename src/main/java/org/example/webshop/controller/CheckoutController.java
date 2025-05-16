@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.example.webshop.repository.OrderRepository;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

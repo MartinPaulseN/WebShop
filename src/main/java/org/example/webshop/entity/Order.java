@@ -17,6 +17,10 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.items = orderItems;
+    }
+
     private double totalPrice;
 
     public Long getId() {

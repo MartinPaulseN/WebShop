@@ -17,8 +17,19 @@ public class OrderItem {
     private Product product;
 
     private int quantity;
-
     private double price;
+
+    @SuppressWarnings("unused")
+    public OrderItem() {
+        // Krävs av JPA
+    }
+
+    public OrderItem(Order order, Product product, int quantity, double price) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     public long getId() {
         return id;

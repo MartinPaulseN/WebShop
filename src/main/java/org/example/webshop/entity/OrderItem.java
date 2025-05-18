@@ -21,7 +21,7 @@ public class OrderItem {
 
     @SuppressWarnings("unused")
     public OrderItem() {
-        // Krävs av JPA
+
     }
 
     public OrderItem(Order order, Product product, int quantity, double price) {

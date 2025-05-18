@@ -8,13 +8,12 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
-
     private double price;
-
     private String description;
+    private int stock;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -58,5 +57,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 }

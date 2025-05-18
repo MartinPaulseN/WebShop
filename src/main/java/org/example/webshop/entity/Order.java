@@ -17,11 +17,10 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.items = orderItems;
-    }
-
     private double totalPrice;
+
+    @Column(nullable = false)
+    private boolean shipped = false;
 
     public Long getId() {
         return id;
@@ -49,5 +48,13 @@ public class Order {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public boolean isShipped() {
+        return shipped;
+    }
+
+    public void setShipped(boolean shipped) {
+        this.shipped = shipped;
     }
 }

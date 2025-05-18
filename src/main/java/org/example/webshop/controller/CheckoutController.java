@@ -43,7 +43,7 @@ public class CheckoutController {
                 .map(item -> new OrderItem(order, item.getProduct(), item.getQuantity(), item.getProduct().getPrice()))
                 .collect(Collectors.toList());
 
-        order.setOrderItems(orderItems);
+        order.setItems(orderItems);
 
         orderRepository.save(order);
 

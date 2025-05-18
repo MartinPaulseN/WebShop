@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adminpanel</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>Administratörspandel</h1>
+
+<h2>Oexpedierade ordrar</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Order-ID</th>
+    <th>Kund</th>
+    <th>Totalt</th>
+    <th>Markera som expedierad</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="order : ${unshippedOrders}">
+    <td th:text="${order.id}">1</td>
+    <td th:text="${order.username}">Kundnamn</td>
+    <td th:text="${order.totalPrice}">100.00</td>
+    <td>
+      <form th:action="@{/admin/ship/{id}(id=${order.id})}" method="post">
+        <button type="submit">Expediera</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>Expedierade ordrar</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Order-ID</th>
+    <th>Kund</th>
+    <th>Totalt</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="order : ${shippedOrders}">
+    <td th:text="${order.id}">2</td>
+    <td th:text="${order.username}">Kundnamn</td>
+    <td th:text="${order.totalPrice}">200.00</td>
+  </tr>
+  </tbody>
+</table>
+
+<a href="/admin/add-product">Lägg till ny produkt</a>
+
+</body>
+</html>

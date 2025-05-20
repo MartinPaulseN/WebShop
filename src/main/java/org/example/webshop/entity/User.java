@@ -14,6 +14,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String role = "ROLE_USER";
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -22,4 +25,7 @@ public class User {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }

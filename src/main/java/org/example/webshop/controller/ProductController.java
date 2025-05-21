@@ -3,6 +3,7 @@ package org.example.webshop.controller;
 
 import org.example.webshop.entity.Category;
 import org.example.webshop.entity.Product;
+import org.example.webshop.service.CartService;
 import org.example.webshop.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +16,11 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
+    private final CartService cartService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, CartService cartService) {
         this.productService = productService;
+        this.cartService = cartService;
     }
 
     @GetMapping("/products")
@@ -35,6 +38,7 @@ public class ProductController {
             products = productService.getAllProducts();
         }
 
+        model.addAttribute("cartSize", cartService.getCartItems().size());
         model.addAttribute("categories", categories);
         model.addAttribute("products", products);
         model.addAttribute("selectedCategory", categoryId);

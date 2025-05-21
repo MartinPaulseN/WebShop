@@ -4,10 +4,12 @@ package org.example.webshop.service;
 import org.example.webshop.model.CartItem;
 import org.example.webshop.entity.Product;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.*;
 
 @Service
+@SessionScope
 public class CartService {
 
     private final Map<Long, CartItem> cart = new HashMap<>();

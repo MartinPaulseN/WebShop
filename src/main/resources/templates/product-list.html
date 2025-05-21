@@ -8,6 +8,8 @@
 
 <h1>Webshop - Produkter</h1>
 
+<a href="/cart">Visa varukorg< (<span th:text="${cartSize}">0</span>)</a>
+
 <form th:action="@{/products}" method="get">
   <input type="text" name="search" th:value="${searchTerm}" placeholder="Sök produkter..." />
   <button type="submit">Sök</button>

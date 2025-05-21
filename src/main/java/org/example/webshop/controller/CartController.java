@@ -26,9 +26,12 @@ public class CartController {
     @PostMapping("/add")
     public String addToCart(@RequestParam("productId") Long productId,
                             @RequestParam("quantity") int quantity) {
+        System.out.println(">>> addToCart körs: productId=" + productId + ", quantity=" + quantity);
         Product product = productService.getProductById(productId);
         if (product != null) {
             cartService.addToCart(product, quantity);
+        } else {
+            System.out.println("!!! Produkt hittades inte");
         }
 
         return "redirect:/products";

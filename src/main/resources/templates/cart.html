@@ -21,6 +21,7 @@
             <form th:action="@{/cart/update}" method="post">
                 <input type="hidden" name="productId" th:value="${item.product.id}"/>
                 <input type="number" name="quantity" th:value="${item.quantity}" min="1"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <button type="submit">Uppdatera</button>
             </form>
         </td>
@@ -28,13 +29,14 @@
         <td>
             <form th:action="@{/cart/remove}" method="post">
                 <input type="hidden" name="productId" th:value="${item.product.id}"/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <button type="submit">Ta bort</button>
             </form>
         </td>
     </tr>
 </table>
 
-<h2 th:text="'totalt: ' + ${totalPrice} + ' kr'"></h2>
+<h2 th:text="'totalt: ' + ${total} + ' kr'"></h2>
 
 <a href="/products">Fortsätt handla</a>
 </body>

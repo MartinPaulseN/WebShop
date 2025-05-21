@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/register", "/login", "/h2-console/**").permitAll()
+                                .requestMatchers("/checkout").authenticated()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
 

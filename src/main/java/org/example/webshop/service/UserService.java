@@ -3,6 +3,8 @@ package org.example.webshop.service;
 import org.example.webshop.model.UserDto;
 import org.example.webshop.entity.User;
 import org.example.webshop.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,10 @@ public class UserService {
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);
+    }
+
+    public User getLoggedInUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Användaren finns inte: " + username));
     }
 }

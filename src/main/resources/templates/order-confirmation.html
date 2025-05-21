@@ -20,7 +20,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="item : ${order.orderItems}">
+    <tr th:each="item : ${order.items}">
         <td th:text="${item.product.name}">Produktnamn</td>
         <td th:text="${item.quantity}">1</td>
         <td th:text="${item.price}">100.0</td>
@@ -31,7 +31,7 @@
 
 <h3>Totalbelopp: <span th:text="${order.totalPrice}">0.0</span> kr</h3>
 
-<a href="/" class="button">Tillbaka till startsidan</a>
+<a th:href="@{/products}" class="button">Tillbaka till startsidan</a>
 
 </body>
 </html>

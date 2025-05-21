@@ -36,7 +36,11 @@
     </tr>
 </table>
 
-<h2 th:text="'totalt: ' + ${total} + ' kr'"></h2>
+<h2 th:text="'Totalt: ' + ${total} + ' kr'"></h2>
+
+<form th:action="@{/checkout}" method="post">
+    <button type="submit">Till kassan</button>
+</form>
 
 <a href="/products">Fortsätt handla</a>
 </body>

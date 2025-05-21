@@ -2,7 +2,6 @@ package org.example.webshop.service;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.example.webshop.entity.User;
 import org.example.webshop.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

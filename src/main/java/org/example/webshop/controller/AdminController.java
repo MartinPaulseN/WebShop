@@ -41,7 +41,7 @@ public class AdminController {
     public String adminPanel(Model model) {
         model.addAttribute("unshippedOrders", orderService.getUnshippedOrders());
         model.addAttribute("shippedOrders", orderService.getShippedOrders());
-        return "admin/admin-padel";
+        return "admin/admin-panel";
     }
 
     @PostMapping("/add-product")

@@ -23,6 +23,7 @@ public class UserService {
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setRole("ROLE_USER");
         userRepository.save(user);
     }
 

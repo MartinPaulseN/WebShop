@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Webshop - Produkter</title>
 </head>
 <body>
 
@@ -15,11 +15,11 @@
 
 <h3>Kategorier:</h3>
 <ul>
-  <l1><a th:href="@{/products}">Alla</a></l1>
-  <l1 th:each="category : ${categories}">
+  <li><a th:href="@{/products}">Alla</a></li>
+  <li th:each="category : ${categories}">
     <a th:href="@{/products(category=${category.id})}"
        th:text="${category.name}">Kategori</a>
-  </l1>
+  </li>
 </ul>
 
 <h3>Produkter:</h3>

@@ -1,5 +1,6 @@
 package org.example.webshop.config;
 
+import org.example.webshop.service.DatabaseUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +18,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final DatabaseUserDetailsService userDetailsService;
+
+    public SecurityConfig(DatabaseUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .userDetailsService(userDetailsService)
                 .authorizeHttpRequests(authz -> authz
                 .requestMatchers("/register", "/login", "/h2-console/**").permitAll()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")

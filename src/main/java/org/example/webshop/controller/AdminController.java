@@ -1,6 +1,8 @@
 package org.example.webshop.controller;
 
+import org.example.webshop.entity.Category;
 import org.example.webshop.entity.Product;
+import org.example.webshop.repository.CategoryRepository;
 import org.example.webshop.repository.ProductRepository;
 import org.example.webshop.service.OrderService;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,12 @@ public class AdminController {
 
     private final OrderService orderService;
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
 
-    public AdminController(OrderService orderService, ProductRepository productRepository) {
+    public AdminController(OrderService orderService, ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.orderService = orderService;
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("/unshipped")
@@ -34,6 +38,7 @@ public class AdminController {
     @GetMapping("/add-product")
     public String showAddProductForm(Model model) {
         model.addAttribute("product", new Product());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "admin/add-product";
     }
 
@@ -45,7 +50,9 @@ public class AdminController {
     }
 
     @PostMapping("/add-product")
-    public String addProduct(@ModelAttribute Product product) {
+    public String addProduct(@ModelAttribute Product product, @RequestParam Long categoryId) {
+        Category category = categoryRepository.findById(categoryId).orElse(null);
+        product.setCategory(category);
         productRepository.save(product);
         return "redirect:/admin";
     }
